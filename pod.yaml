@@ -7,11 +7,11 @@ spec:
     - name: mycontainer
       image: mysql:9.4.0
       ports:
-        - container port: 3306
+        - containerport: 3306
       envFrom:
         - configMapRef:
             name: config
-        - secretRef :
+        - secretRef:
             name: db-secret-pod
       volumeMounts:
         - name: mydb-values
