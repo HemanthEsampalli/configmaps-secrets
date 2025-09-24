@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  - name: Config
+  name: my-Config
 data:
-  MYSQL_ROOT_PASSWORD: root root
+  MYSQL_ROOT_PASSWORD: "root root"
   MYSQL_DATABASE: mydummydata
   MYSQL_USER: hemanth 
-  MYSQL_PASSWORD: admin@123
-  url: https://github.com/HemanthEsampalli/replica-deployment.git
+  MYSQL_PASSWORD: "admin@123"
+  url: "https://github.com/HemanthEsampalli/replica-deployment.git"
