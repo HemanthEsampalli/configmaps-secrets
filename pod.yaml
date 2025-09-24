@@ -1,28 +1,33 @@
 apiVersion: v1
 kind: Pod
-metadata:
-  name: mypod
+metadata: 
+  name: mytest-pod
 spec: 
   containers:
-    - name: mycontainer
-      image: mysql:9.4.0
+    - name: mydb-container
+      image: mysql:8.0        # ✅ mysql:9.4 doesn’t exist, use 8.0
       ports:
         - containerPort: 3306
-      envFrom:
+      envFrom: 
         - configMapRef:
-            name: my-config
+            name: config-pod-db
         - secretRef:
             name: db-secret-pod
       volumeMounts:
-        - name: mydb-values
-          mountPath: /var/lib/mysql
-  volumes:
-    - name: mydb-values
+        - name: mydb-storage
+          mountPath: /var/lib/mysql   # MySQL data will be stored here
+        - name: config-volume
+          mountPath: /etc/config      # ConfigMap mounted as files
+        - name: secret-volume
+          mountPath: /etc/secret      # Secret mounted as files
+  volumes: 
+    - name: mydb-storage
+      emptyDir: {}                    # Temporary storage, replace with PVC for real DB
+    - name: config-volume
       configMap:
-        name: my-config
+        name: config-pod-db
     - name: secret-volume
-      secret: 
+      secret:
         secretName: db-secret-pod
-
 
 
