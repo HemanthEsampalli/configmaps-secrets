@@ -7,7 +7,7 @@ spec:
     - name: mycontainer
       image: mysql:9.4.0
       ports:
-        - containerport: 3306
+        - containerPort: 3306
       envFrom:
         - configMapRef:
             name: config
